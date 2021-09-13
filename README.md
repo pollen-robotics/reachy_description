@@ -1,2 +1,2 @@
-# reachy_description_ros2
-ROS2 version of Reachy URDF model
+# reachy_description
+ROS2 Foxy package for publishing Reachy's 2021 URDF and visualizing in Rviz.
