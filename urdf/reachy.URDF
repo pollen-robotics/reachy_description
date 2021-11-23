@@ -47,7 +47,7 @@
     </collision>
 </link>
 
-<link name="l_antenna">
+<link name="l_antenna_link">
     <inertial>
         <origin xyz="-0.001 0.0 0.008" rpy="0.0 0.0 0.0"/>
         <mass value="0.004"/>
@@ -67,7 +67,7 @@
     </collision>
 </link>
 
-<link name="r_antenna">
+<link name="r_antenna_link">
     <inertial>
         <origin xyz="-0.001 0.0 0.008" rpy="0.0 0.0 0.0"/>
         <mass value="0.004"/>
@@ -427,7 +427,7 @@
 <joint name="r_antenna" type="revolute">
     <origin xyz="-0.052 -0.057 0.086" rpy="-0.166 -1.054 1.11"/>
     <parent link="head"/>
-    <child link="r_antenna"/>
+    <child link="r_antenna_link"/>
     <axis xyz="0 0 1"/>
    <limit lower="-2.618" upper="2.618" effort="10." velocity="0.0"/>
 </joint>
@@ -435,7 +435,7 @@
 <joint name="l_antenna" type="revolute">
     <origin xyz="-0.052 0.057 0.086" rpy="0.166 -1.054 -1.11"/>
     <parent link="head"/>
-    <child link="l_antenna"/>
+    <child link="l_antenna_link"/>
     <axis xyz="0 0 1"/>
    <limit lower="-2.618" upper="2.618" effort="10." velocity="0.0"/>
 </joint>
