@@ -795,17 +795,19 @@
 <link name="right_camera" />
 </xacro:if>
 
+
   <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/reachy</robotNamespace>
-      <!-- <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType> -->
+    <plugin filename="libgazebo_ros2_control.so" name="reachy_gazebo_ros2">
+      <robot_param>robot_description</robot_param>
+      <robot_param_node>robot_state_publisher</robot_param_node>
+      <parameters>$(find reachy_gazebo_ros2)/config/reachy_gazebo_controllers.yaml</parameters>
     </plugin>
-  </gazebo>
+</gazebo>
 
 <!-- Declare transmission/motors -->
 
-<xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
-<xacro:include filename="reachy_ros2_control.xacro" />
+<xacro:arg name="initial_positions_file" default="$(find reachy_description_ros2)/urdf/initial_positions.yaml" />
+<xacro:include filename="$(find reachy_description_ros2)/urdf/reachy_ros2_control.xacro" />
 <xacro:reachy_ros2_control name="ReachyFakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
 
   <!-- <transmission name="trans_orbita_roll"> -->
