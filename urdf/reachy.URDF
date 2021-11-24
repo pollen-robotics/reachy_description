@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <robot name="reachy">
-
+    <mujoco>
+        <compiler meshdir="../meshes/" balanceinertia="true"/>
+    </mujoco>
 <!-- Torso Link -->
 
 <link name="pedestal"/>
@@ -424,7 +426,7 @@
     <child link="torso" />
 </joint>
 
-<joint name="r_antenna" type="revolute">
+<joint name="r_antenna_joint" type="revolute">
     <origin xyz="-0.052 -0.057 0.086" rpy="-0.166 -1.054 1.11"/>
     <parent link="head"/>
     <child link="r_antenna"/>
@@ -432,7 +434,7 @@
    <limit lower="-2.618" upper="2.618" effort="10." velocity="0.0"/>
 </joint>
 
-<joint name="l_antenna" type="revolute">
+<joint name="l_antenna_joint" type="revolute">
     <origin xyz="-0.052 0.057 0.086" rpy="0.166 -1.054 -1.11"/>
     <parent link="head"/>
     <child link="l_antenna"/>

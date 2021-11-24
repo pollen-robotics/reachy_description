@@ -6,7 +6,8 @@
 
         <ros2_control name="${name}" type="system">
             <hardware>
-                <plugin>fake_components/GenericSystem</plugin>
+                <!-- <plugin>fake_components/GenericSystem</plugin> -->
+		<plugin>gazebo_ros2_control/GazeboSystem</plugin>
             </hardware>
 
 
@@ -102,8 +103,8 @@
             </joint>
 
 
-            <joint name="l_antenna">
-                <param name="initial_position">${initial_positions['l_antenna']}</param>
+            <joint name="l_antenna_joint">
+                <param name="initial_position">${initial_positions['l_antenna_joint']}</param>
                 <command_interface name="position" />
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
@@ -180,8 +181,8 @@
             </joint>
 
 
-            <joint name="r_antenna">
-                <param name="initial_position">${initial_positions['r_antenna']}</param>
+            <joint name="r_antenna_joint">
+                <param name="initial_position">${initial_positions['r_antenna_joint']}</param>
                 <command_interface name="position" />
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>

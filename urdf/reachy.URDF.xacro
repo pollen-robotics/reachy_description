@@ -5,6 +5,21 @@
 <xacro:arg name="left_arm" default="true"/>
 <xacro:arg name="right_arm" default="true"/>
 
+<!-- pretty important for stability -->
+<xacro:property name="damping" value="0" />
+<xacro:property name="friction" value="0.1" />
+
+<xacro:macro name="xmass" params="value"><mass value="${value}" /></xacro:macro>
+
+<xacro:macro name="inertial_cuboid" params="mass xyz rpy x_length y_length z_length">
+  <inertial>
+    <xacro:xmass value="${mass}" />
+    <origin rpy="${rpy}" xyz="${xyz}"/>
+    <inertia ixx="${mass * (y_length*y_length + z_length*z_length) / 12}" ixy="0.0" ixz="0.0"
+             iyy="${mass * (x_length*x_length + z_length*z_length) / 12}" iyz="0.0"
+             izz="${mass * (x_length*x_length + y_length*y_length) / 12}" />
+  </inertial>
+</xacro:macro>
 
 
 <!-- Torso Link -->
@@ -37,6 +52,47 @@
   <material>Gazebo/Grey</material>
 </gazebo>
 
+
+
+<!-- <gazebo reference="l_shoulder"> -->
+<!--     <material>Gazebo/White</material> -->
+<!-- </gazebo> -->
+
+
+<!-- <gazebo reference="l_shoulder_x"> -->
+<!--     <material>Gazebo/White</material> -->
+<!-- </gazebo> -->
+
+<!-- <gazebo reference="l_upper_arm"> -->
+<!--     <material>Gazebo/White</material> -->
+<!-- </gazebo> -->
+
+
+<!-- <gazebo reference="l_forearm"> -->
+<!--     <material>Gazebo/White</material> -->
+<!-- </gazebo> -->
+
+
+<!-- <gazebo reference="l_wrist"> -->
+<!--     <material>Gazebo/White</material> -->
+<!-- </gazebo> -->
+
+
+<!-- <gazebo reference="l_wrist2hand"> -->
+<!--     <material>Gazebo/White</material> -->
+<!-- </gazebo> -->
+
+
+<!-- <gazebo reference="l_gripper_thumb"> -->
+<!--     <material>Gazebo/White</material> -->
+<!-- </gazebo> -->
+
+
+<!-- <gazebo reference="l_gripper_finger"> -->
+<!--     <material>Gazebo/White</material> -->
+<!-- </gazebo> -->
+
+
 <link name="torso">
     <inertial>
         <origin xyz="0.0 0.019 -0.009" rpy="0.0 0.0 0.0"/>
@@ -46,7 +102,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/torso.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/torso.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -69,7 +125,9 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/head.dae"/>
+            <!-- <mesh filename="file://$(find reachy_description_ros2)/meshes/head.dae"/> -->
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/head.dae"/>
+
         </geometry>
     </visual>
     <collision>
@@ -79,6 +137,13 @@
         </geometry>
     </collision>
 </link>
+
+
+<!-- <gazebo reference="head"> -->
+<!--   <material>Gazebo/Grey</material> -->
+<!-- </gazebo> -->
+
+
 <link name="head_tip"/>
 <link name="l_antenna">
     <inertial>
@@ -89,7 +154,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/antenna.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/antenna.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -109,7 +174,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/antenna.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/antenna.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -133,7 +198,7 @@
     <visual name="">
         <origin xyz="0.0 0.04 0.0" rpy="1.57 1.57 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/shoulder.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/shoulder.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -153,7 +218,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/shoulder_x.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/shoulder_x.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -173,7 +238,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 -0.0526" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/upper_arm.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/upper_arm.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -193,7 +258,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/forearm.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/forearm.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -213,7 +278,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 -0.100" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/wrist.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/wrist.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -233,7 +298,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/wrist2hand.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/wrist2hand.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -246,14 +311,17 @@
 
 <link name="r_gripper_thumb">
     <inertial>
-        <origin xyz="0.032 -0.008 0.0" rpy="0.0 1.57 0.0"/>
+        <!-- <origin xyz="0.032 -0.008 0.0" rpy="0.0 1.57 0.0"/> -->
+        <origin xyz="0.0 -0.008 0.0" rpy="0.0 1.57 0.0"/>
         <mass value="0.173"/>
-        <inertia ixx="1.083e-4" ixy="-3.476e-5" ixz="1.331e-6" iyy="1.421e-4" iyz="6.730e-7" izz="2.112e-4"/>
+        <!-- <inertia ixx="1.083e-4" ixy="-3.476e-5" ixz="1.331e-6" iyy="1.421e-4" iyz="6.730e-7" izz="2.112e-4"/> -->
+        <inertia ixx="0.0001" izz="0.0001" iyy="0.0001" ixy="0" ixz="0" iyz="0" />
+
     </inertial>
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/r_gripper_thumb.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/r_gripper_thumb.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -266,14 +334,18 @@
 
 <link name="r_gripper_finger">
     <inertial>
-        <origin xyz="-0.005 -0.043 -0.0" rpy="0.0 1.57 0.0"/>
+        <!-- <origin xyz="-0.005 -0.043 -0.0" rpy="0.0 1.57 0.0"/> -->
+        <origin xyz="-0.00 -0.005 -0.0" rpy="1.57 0.0 1.57"/>
         <mass value="0.035"/>
-        <inertia ixx="9.166e-5" ixy="-6.559e-6" ixz="-3.952e-8" iyy="1.062e-5" iyz="5.276e-9" izz="8.704e-5"/>
+
+        <!-- <inertia ixx="9.166e-5" ixy="-6.559e-6" ixz="-3.952e-8" iyy="1.062e-5" iyz="5.276e-9" izz="8.704e-5"/> -->
+        <inertia ixx="0.00005" izz="0.00005" iyy="0.00005" ixy="0" ixz="0" iyz="0" />
+
     </inertial>
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/r_gripper_finger.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/r_gripper_finger.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -292,14 +364,14 @@
 <xacro:if value="$(arg left_arm)">
 <link name="l_shoulder">
     <inertial>
-        <origin xyz="-0.016 0.044 0.0" rpy="-1.57 1.57 0.0"/>
+        <origin xyz="-0.016 -0.036 0.0" rpy="-1.57 1.57 0.0"/>
         <mass value="0.053"/>
         <inertia ixx="3.308e-4" ixy="9.972e-8" ixz="-2.037e-9" iyy="4.650e-5" iyz="2.113e-6" izz="3.545e-5"/>
     </inertial>
     <visual name="">
         <origin xyz="0.0 -0.04 0.0" rpy="-1.57 1.57 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/shoulder.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/shoulder.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -319,7 +391,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/shoulder_x.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/shoulder_x.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -339,7 +411,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 -0.0526" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/upper_arm.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/upper_arm.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -359,7 +431,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/forearm.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/forearm.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -379,7 +451,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 -0.1" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/wrist.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/wrist.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -399,7 +471,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/wrist2hand.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/wrist2hand.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -412,14 +484,17 @@
 
 <link name="l_gripper_thumb">
     <inertial>
-        <origin xyz="0.032 0.008 0.0" rpy="0.0 1.57 0.0"/>
+        <!-- <origin xyz="0.032 0.008 0.0" rpy="0.0 1.57 0.0"/> -->
+        <origin xyz="0.0 0.008 0.0" rpy="0.0 1.57 0.0"/>
         <mass value="0.173"/>
-        <inertia ixx="1.088e+5" ixy="3.479e+4" ixz="1.357e+3" iyy="1.422e+5" iyz="-7.930e+2" izz="2.116e+5"/>
+        <!-- <inertia ixx="1.088e+5" ixy="3.479e+4" ixz="1.357e+3" iyy="1.422e+5" iyz="-7.930e+2" izz="2.116e+5"/> -->
+        <inertia ixx="0.0001" izz="0.0001" iyy="0.0001" ixy="0" ixz="0" iyz="0" />
+
     </inertial>
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/l_gripper_thumb.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/l_gripper_thumb.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -432,14 +507,16 @@
 
 <link name="l_gripper_finger">
     <inertial>
-        <origin xyz="0.005 -0.043 0.0" rpy="0.0 1.57 0.0"/>
+        <!-- <origin xyz="0.005 -0.043 0.0" rpy="0.0 1.57 0.0"/> -->
+        <origin xyz="-0.00 0.005 -0.0" rpy="1.57 0.0 1.57"/>
         <mass value="0.035"/>
-        <inertia ixx="9.165e-5" ixy="6.559e-6" ixz="3.609e-10" iyy="1.062e-5" iyz="4.666e-9" izz="8.705e-5"/>
+        <!-- <inertia ixx="9.165e-5" ixy="6.559e-6" ixz="3.609e-10" iyy="1.062e-5" iyz="4.666e-9" izz="8.705e-5"/> -->
+        <inertia ixx="0.00005" izz="0.00005" iyy="0.00005" ixy="0" ixz="0" iyz="0" />
     </inertial>
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 0.0"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/l_gripper_finger.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/l_gripper_finger.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -470,20 +547,22 @@
 </joint>
 
 <xacro:if value="$(arg head)">
-<joint name="r_antenna" type="revolute">
+<joint name="r_antenna_joint" type="revolute">
     <origin xyz="-0.052 -0.057 0.086" rpy="-0.166 -1.054 1.11"/>
     <parent link="head"/>
     <child link="r_antenna"/>
     <axis xyz="0 0 1"/>
    <limit lower="-2.618" upper="2.618" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
-<joint name="l_antenna" type="revolute">
+<joint name="l_antenna_joint" type="revolute">
     <origin xyz="-0.052 0.057 0.086" rpy="0.166 -1.054 -1.11"/>
     <parent link="head"/>
     <child link="l_antenna"/>
     <axis xyz="0 0 1"/>
    <limit lower="-2.618" upper="2.618" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 </xacro:if>
 
@@ -496,6 +575,7 @@
     <child link="r_shoulder"/>
     <axis xyz="0 1 0"/>
    <limit lower="-2.618" upper="1.57" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 <joint name="r_shoulder_roll" type="revolute">
@@ -504,6 +584,7 @@
     <child link="r_shoulder_x"/>
     <axis xyz="1 0 0"/>
    <limit lower="-3.14" upper="0.174" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 <joint name="r_arm_yaw" type="revolute">
@@ -512,6 +593,7 @@
     <child link="r_upper_arm"/>
     <axis xyz="0 0 1"/>
    <limit lower="-1.57" upper="1.57" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 <joint name="r_elbow_pitch" type="revolute">
@@ -520,6 +602,7 @@
     <child link="r_forearm"/>
     <axis xyz="0 1 0"/>
    <limit lower="-2.182" upper="0" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 <joint name="r_forearm_yaw" type="revolute">
@@ -528,6 +611,7 @@
     <child link="r_wrist"/>
     <axis xyz="0 0 1"/>
    <limit lower="-1.745" upper="1.745" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 <joint name="r_wrist_pitch" type="revolute">
@@ -536,6 +620,7 @@
     <child link="r_wrist2hand"/>
     <axis xyz="0 1 0"/>
    <limit lower="-0.785" upper="0.785" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 
@@ -545,6 +630,7 @@
     <child link="r_gripper_thumb"/>
     <axis xyz="1 0 0"/>
    <limit lower="-0.785" upper="0.785" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 <joint name="r_gripper" type="revolute">
@@ -553,7 +639,9 @@
     <child link="r_gripper_finger"/>
     <axis xyz="1 0 0"/>
    <limit lower="-1.2" upper="0.35" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
+
 
 <joint name="r_tip" type="fixed">
     <origin xyz="0 -0.012 -0.085" rpy="0 0 0" />
@@ -570,6 +658,7 @@
     <child link="l_shoulder"/>
     <axis xyz="0 1 0"/>
    <limit lower="-2.618" upper="1.57" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 <joint name="l_shoulder_roll" type="revolute">
@@ -578,6 +667,7 @@
     <child link="l_shoulder_x"/>
     <axis xyz="1 0 0"/>
    <limit lower="-0.174" upper="3.14" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 <joint name="l_arm_yaw" type="revolute">
@@ -586,6 +676,7 @@
     <child link="l_upper_arm"/>
     <axis xyz="0 0 1"/>
    <limit lower="-1.57" upper="1.57" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 <joint name="l_elbow_pitch" type="revolute">
@@ -594,6 +685,7 @@
     <child link="l_forearm"/>
     <axis xyz="0 1 0"/>
    <limit lower="-2.182" upper="0" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 <joint name="l_forearm_yaw" type="revolute">
@@ -602,6 +694,7 @@
     <child link="l_wrist"/>
     <axis xyz="0 0 1"/>
    <limit lower="-1.745" upper="1.745" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 
@@ -611,6 +704,7 @@
     <child link="l_wrist2hand"/>
     <axis xyz="0 1 0"/>
    <limit lower="-0.785" upper="0.785" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 
@@ -620,6 +714,7 @@
     <child link="l_gripper_thumb"/>
     <axis xyz="1 0 0"/>
    <limit lower="-0.785" upper="0.785" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 <joint name="l_gripper" type="revolute">
@@ -628,6 +723,7 @@
     <child link="l_gripper_finger"/>
     <axis xyz="1 0 0"/>
    <limit lower="-0.35" upper="1.2" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 <joint name="l_tip" type="fixed">
@@ -656,6 +752,7 @@
     <child link="head_x"/>
     <axis xyz="1 0 0"/>
    <limit lower="-0.8" upper="0.8" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 <link name="head_x" >
@@ -672,6 +769,7 @@
     <child link="head_y"/>
     <axis xyz="0 1 0"/>
    <limit lower="-0.8" upper="1.13" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 <link name="head_y" >
@@ -688,6 +786,7 @@
     <child link="head_z"/>
     <axis xyz="0 0 1"/>
    <limit lower="-2.79" upper="2.79" effort="10." velocity="0.0"/>
+    <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
 <link name="head_z" >
@@ -722,7 +821,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.5236"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/orbita_arm.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/orbita_arm.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -743,7 +842,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 2.618"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/orbita_arm.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/orbita_arm.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -764,7 +863,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 -1.57"/>
         <geometry>
-            <mesh filename="package://reachy_description_ros2/meshes/orbita_arm.dae"/>
+            <mesh filename="file://$(find reachy_description_ros2)/meshes/orbita_arm.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -796,274 +895,18 @@
 </xacro:if>
 
   <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/reachy</robotNamespace>
+    <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+      <robot_sim_type>gazebo_ros2_control/GazeboSystem</robot_sim_type>
+      <!-- <robotNamespace>/reachy</robotNamespace> -->
       <!-- <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType> -->
+      <parameters>$(find reachy_gazebo_ros2)/config/reachy_gazebo_controllers.yaml</parameters>
     </plugin>
   </gazebo>
 
 <!-- Declare transmission/motors -->
 
-<xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
-<xacro:include filename="reachy_ros2_control.xacro" />
+<xacro:arg name="initial_positions_file" default="$(find reachy_description_ros2)/urdf/initial_positions.yaml" />
+<xacro:include filename="$(find reachy_description_ros2)/urdf/reachy_ros2_control.xacro" />
 <xacro:reachy_ros2_control name="ReachyFakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
-
-  <!-- <transmission name="trans_orbita_roll"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="orbita_roll"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="orbita_roll_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_orbita_pitch"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="orbita_pitch"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="orbita_pitch_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_orbita_yaw"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="orbita_yaw"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="orbita_yaw_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-
-  <!-- <transmission name="trans_l_shoulder_pitch"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="l_shoulder_pitch"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="l_shoulder_pitch_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_l_shoulder_roll"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="l_shoulder_roll"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="l_shoulder_roll_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_l_arm_yaw"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="l_arm_yaw"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="l_arm_yaw_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_l_elbow_pitch"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="l_elbow_pitch"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="l_elbow_pitch_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_l_forearm_yaw"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="l_forearm_yaw"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="l_forearm_yaw_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_l_wrist_pitch"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="l_wrist_pitch"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="l_wrist_pitch_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_l_wrist_roll"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="l_wrist_roll"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="l_wrist_roll_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_l_gripper"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="l_gripper"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="l_gripper_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_l_antenna"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="l_antenna"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="l_antenna_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-
-
-
-
-
-
-  <!-- <transmission name="trans_r_shoulder_pitch"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="r_shoulder_pitch"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="r_shoulder_pitch_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_r_shoulder_roll"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="r_shoulder_roll"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="r_shoulder_roll_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_r_arm_yaw"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="r_arm_yaw"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="r_arm_yaw_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_r_elbow_pitch"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="r_elbow_pitch"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="r_elbow_pitch_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_r_forearm_yaw"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="r_forearm_yaw"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="r_forearm_yaw_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_r_wrist_pitch"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="r_wrist_pitch"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="r_wrist_pitch_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_r_wrist_roll"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="r_wrist_roll"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="r_wrist_roll_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_r_gripper"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="r_gripper"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="r_gripper_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
-
-
-  <!-- <transmission name="trans_r_antenna"> -->
-  <!--   <type>transmission_interface/SimpleTransmission</type> -->
-  <!--   <joint name="r_antenna"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--   </joint> -->
-  <!--   <actuator name="r_antenna_motor"> -->
-  <!--     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
-  <!--     <mechanicalReduction>1</mechanicalReduction> -->
-  <!--   </actuator> -->
-  <!-- </transmission> -->
 
 </robot>

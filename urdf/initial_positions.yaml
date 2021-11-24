@@ -8,7 +8,7 @@ initial_positions:
   l_wrist_pitch: 0.0
   l_wrist_roll: 0.0
   l_gripper: 0.0
-  l_antenna: 0.0
+  l_antenna_joint: 0.0
   r_shoulder_pitch: 0.0
   r_shoulder_roll: 0.0
   r_arm_yaw: 0.0
@@ -17,7 +17,7 @@ initial_positions:
   r_wrist_pitch: 0.0
   r_wrist_roll: 0.0
   r_gripper: 0.0
-  r_antenna: 0.0
+  r_antenna_joint: 0.0
   orbita_roll: 0.0
   orbita_pitch: 0.0
   orbita_yaw: 0.0

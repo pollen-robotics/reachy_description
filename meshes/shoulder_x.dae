@@ -95,6 +95,9 @@
       <profile_COMMON>
         <technique sid="common">
           <lambert>
+	    <ambient>
+	      <color sid="ambient">1 1 1 1</color>
+	    </ambient>
             <emission>
               <color sid="emission">0 0 0 1</color>
             </emission>
