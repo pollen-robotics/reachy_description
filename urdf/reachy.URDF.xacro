@@ -145,7 +145,7 @@
 
 
 <link name="head_tip"/>
-<link name="l_antenna">
+<link name="l_antenna_link">
     <inertial>
         <origin xyz="-0.001 0.0 0.008" rpy="0.0 0.0 0.0"/>
         <mass value="0.004"/>
@@ -165,7 +165,7 @@
     </collision>
 </link>
 
-<link name="r_antenna">
+<link name="r_antenna_link">
     <inertial>
         <origin xyz="-0.001 0.0 0.008" rpy="0.0 0.0 0.0"/>
         <mass value="0.004"/>
@@ -550,7 +550,7 @@
 <joint name="r_antenna_joint" type="revolute">
     <origin xyz="-0.052 -0.057 0.086" rpy="-0.166 -1.054 1.11"/>
     <parent link="head"/>
-    <child link="r_antenna"/>
+    <child link="r_antenna_link"/>
     <axis xyz="0 0 1"/>
    <limit lower="-2.618" upper="2.618" effort="10." velocity="0.0"/>
     <dynamics damping="${damping}" friction="${friction}" />
@@ -559,7 +559,7 @@
 <joint name="l_antenna_joint" type="revolute">
     <origin xyz="-0.052 0.057 0.086" rpy="0.166 -1.054 -1.11"/>
     <parent link="head"/>
-    <child link="l_antenna"/>
+    <child link="l_antenna_link"/>
     <axis xyz="0 0 1"/>
    <limit lower="-2.618" upper="2.618" effort="10." velocity="0.0"/>
     <dynamics damping="${damping}" friction="${friction}" />
@@ -894,6 +894,7 @@
 <link name="right_camera" />
 </xacro:if>
 
+
   <gazebo>
     <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
       <robot_sim_type>gazebo_ros2_control/GazeboSystem</robot_sim_type>
@@ -901,7 +902,7 @@
       <!-- <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType> -->
       <parameters>$(find reachy_gazebo_ros2)/config/reachy_gazebo_controllers.yaml</parameters>
     </plugin>
-  </gazebo>
+</gazebo>
 
 <!-- Declare transmission/motors -->
 
