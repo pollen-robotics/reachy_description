@@ -547,7 +547,7 @@
 </joint>
 
 <xacro:if value="$(arg head)">
-<joint name="r_antenna_joint" type="revolute">
+<joint name="r_antenna" type="revolute">
     <origin xyz="-0.052 -0.057 0.086" rpy="-0.166 -1.054 1.11"/>
     <parent link="head"/>
     <child link="r_antenna_link"/>
@@ -556,7 +556,7 @@
     <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
-<joint name="l_antenna_joint" type="revolute">
+<joint name="l_antenna" type="revolute">
     <origin xyz="-0.052 0.057 0.086" rpy="0.166 -1.054 -1.11"/>
     <parent link="head"/>
     <child link="l_antenna_link"/>

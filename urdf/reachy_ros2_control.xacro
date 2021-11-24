@@ -103,8 +103,8 @@
             </joint>
 
 
-            <joint name="l_antenna_joint">
-                <param name="initial_position">${initial_positions['l_antenna_joint']}</param>
+            <joint name="l_antenna">
+                <param name="initial_position">${initial_positions['l_antenna']}</param>
                 <command_interface name="position" />
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
@@ -181,8 +181,8 @@
             </joint>
 
 
-            <joint name="r_antenna_joint">
-                <param name="initial_position">${initial_positions['r_antenna_joint']}</param>
+            <joint name="r_antenna">
+                <param name="initial_position">${initial_positions['r_antenna']}</param>
                 <command_interface name="position" />
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
