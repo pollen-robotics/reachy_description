@@ -102,7 +102,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/torso.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/torso.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -125,8 +125,8 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <!-- <mesh filename="file://$(find reachy_description_ros2)/meshes/head.dae"/> -->
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/head.dae"/>
+            <!-- <mesh filename="file://$(find reachy_description)/meshes/head.dae"/> -->
+            <mesh filename="file://$(find reachy_description)/meshes/head.dae"/>
 
         </geometry>
     </visual>
@@ -154,7 +154,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/antenna.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/antenna.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -174,7 +174,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/antenna.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/antenna.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -198,7 +198,7 @@
     <visual name="">
         <origin xyz="0.0 0.04 0.0" rpy="1.57 1.57 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/shoulder.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/shoulder.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -218,7 +218,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/shoulder_x.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/shoulder_x.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -238,7 +238,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 -0.0526" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/upper_arm.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/upper_arm.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -258,7 +258,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/forearm.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/forearm.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -278,7 +278,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 -0.100" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/wrist.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/wrist.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -298,7 +298,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/wrist2hand.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/wrist2hand.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -321,7 +321,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/r_gripper_thumb.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/r_gripper_thumb.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -345,7 +345,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/r_gripper_finger.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/r_gripper_finger.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -371,7 +371,7 @@
     <visual name="">
         <origin xyz="0.0 -0.04 0.0" rpy="-1.57 1.57 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/shoulder.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/shoulder.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -391,7 +391,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/shoulder_x.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/shoulder_x.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -411,7 +411,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 -0.0526" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/upper_arm.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/upper_arm.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -431,7 +431,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/forearm.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/forearm.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -451,7 +451,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 -0.1" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/wrist.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/wrist.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -471,7 +471,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/wrist2hand.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/wrist2hand.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -494,7 +494,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/l_gripper_thumb.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/l_gripper_thumb.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -516,7 +516,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 0.0"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/l_gripper_finger.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/l_gripper_finger.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -821,7 +821,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.5236"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/orbita_arm.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/orbita_arm.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -842,7 +842,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 2.618"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/orbita_arm.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/orbita_arm.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -863,7 +863,7 @@
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 -1.57"/>
         <geometry>
-            <mesh filename="file://$(find reachy_description_ros2)/meshes/orbita_arm.dae"/>
+            <mesh filename="file://$(find reachy_description)/meshes/orbita_arm.dae"/>
         </geometry>
     </visual>
     <collision>
@@ -900,14 +900,14 @@
       <robot_sim_type>gazebo_ros2_control/GazeboSystem</robot_sim_type>
       <!-- <robotNamespace>/reachy</robotNamespace> -->
       <!-- <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType> -->
-      <parameters>$(find reachy_gazebo_ros2)/config/reachy_gazebo_controllers.yaml</parameters>
+      <parameters>$(find reachy_gazebo)/config/reachy_gazebo_controllers.yaml</parameters>
     </plugin>
 </gazebo>
 
 <!-- Declare transmission/motors -->
 
-<xacro:arg name="initial_positions_file" default="$(find reachy_description_ros2)/urdf/initial_positions.yaml" />
-<xacro:include filename="$(find reachy_description_ros2)/urdf/reachy_ros2_control.xacro" />
+<xacro:arg name="initial_positions_file" default="$(find reachy_description)/urdf/initial_positions.yaml" />
+<xacro:include filename="$(find reachy_description)/urdf/reachy_ros2_control.xacro" />
 <xacro:reachy_ros2_control name="ReachyFakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
 
 </robot>

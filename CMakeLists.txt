@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(reachy_description_ros2)
+project(reachy_description)
 
 if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)

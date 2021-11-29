@@ -1,20 +1,20 @@
 import os
+
 from ament_index_python.packages import get_package_share_directory
-import launch
 from launch import LaunchDescription
+from launch.substitutions import Command
 from launch_ros.actions import Node
-from launch.substitutions import Command, LaunchConfiguration
 
 
 def generate_launch_description():
 
     xacro_path = os.path.join(
-        get_package_share_directory('reachy_description_ros2'),
+        get_package_share_directory('reachy_description'),
         'urdf/reachy.URDF.xacro',
     )
 
     rviz_config_path = os.path.join(
-        get_package_share_directory('reachy_description_ros2'),
+        get_package_share_directory('reachy_description'),
         'rviz/reachy.rviz',
     )
 
@@ -32,6 +32,6 @@ def generate_launch_description():
         Node(
             package='rviz2',
             executable='rviz2',
-            arguments=['-d'+rviz_config_path],
+            arguments=['-d' + rviz_config_path],
         ),
     ])
