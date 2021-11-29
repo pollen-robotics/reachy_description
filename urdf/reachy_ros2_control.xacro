@@ -12,8 +12,8 @@
 
 
 
-            <joint name="orbita_roll">
-                <param name="initial_position">${initial_positions['orbita_roll']}</param>
+            <joint name="neck_roll">
+                <param name="initial_position">${initial_positions['neck_roll']}</param>
                 <command_interface name="position" />
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
@@ -21,8 +21,8 @@
 
 
 
-            <joint name="orbita_pitch">
-                <param name="initial_position">${initial_positions['orbita_pitch']}</param>
+            <joint name="neck_pitch">
+                <param name="initial_position">${initial_positions['neck_pitch']}</param>
                 <command_interface name="position" />
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
@@ -30,8 +30,8 @@
 
 
 
-            <joint name="orbita_yaw">
-                <param name="initial_position">${initial_positions['orbita_yaw']}</param>
+            <joint name="neck_yaw">
+                <param name="initial_position">${initial_positions['neck_yaw']}</param>
                 <command_interface name="position" />
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>

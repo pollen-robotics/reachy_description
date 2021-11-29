@@ -746,7 +746,7 @@
 
 <!-- ...with a ball orbita joint -->
 <xacro:if value="$(arg head)">
-<joint name="orbita_roll" type="revolute">
+<joint name="neck_roll" type="revolute">
     <origin xyz="0.015 0.0 0.095" rpy="0 0.174 0" />
     <parent link="torso"/>
     <child link="head_x"/>
@@ -763,7 +763,7 @@
 </inertial>
 </link>
 
-<joint name="orbita_pitch" type="revolute">
+<joint name="neck_pitch" type="revolute">
     <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
     <parent link="head_x"/>
     <child link="head_y"/>
@@ -780,7 +780,7 @@
 </inertial>
 </link>
 
-<joint name="orbita_yaw" type="revolute">
+<joint name="neck_yaw" type="revolute">
     <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
     <parent link="head_y"/>
     <child link="head_z"/>
@@ -797,7 +797,7 @@
 </inertial>
 </link>
 
-<joint name="orbita_fixed" type="fixed">
+<joint name="neck_fixed" type="fixed">
     <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
     <parent link="head_z" />
     <child link="head" />
@@ -811,13 +811,13 @@
 
 <!-- Fixed Orbita Arms Visuals -->
 
-<joint name="orbita_top" type="fixed">
+<joint name="neck_top" type="fixed">
     <origin xyz="0.0067 0.0 0.0478" rpy="0 0.174 0"/>
     <parent link="torso"/>
-    <child link="top_orbita_arm"/>
+    <child link="top_neck_arm"/>
 </joint>
 
-<link name="top_orbita_arm">
+<link name="top_neck_arm">
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.5236"/>
         <geometry>
@@ -832,13 +832,13 @@
     </collision>
 </link>
 
-<joint name="orbita_middle" type="fixed">
+<joint name="neck_middle" type="fixed">
     <origin xyz="0.0067 0.0 0.0478" rpy="0 0.174 0"/>
     <parent link="torso"/>
-    <child link="middle_orbita_arm"/>
+    <child link="middle_neck_arm"/>
 </joint>
 
-<link name="middle_orbita_arm">
+<link name="middle_neck_arm">
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 2.618"/>
         <geometry>
@@ -853,13 +853,13 @@
     </collision>
 </link>
 
-<joint name="orbita_bottom" type="fixed">
+<joint name="neck_bottom" type="fixed">
     <origin xyz="0.0067 0.0 0.0478" rpy="0 0.174 0"/>
     <parent link="torso"/>
-    <child link="bottom_orbita_arm"/>
+    <child link="bottom_neck_arm"/>
 </joint>
 
-<link name="bottom_orbita_arm">
+<link name="bottom_neck_arm">
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 -1.57"/>
         <geometry>

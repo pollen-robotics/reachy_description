@@ -18,6 +18,6 @@ initial_positions:
   r_wrist_roll: 0.0
   r_gripper: 0.0
   r_antenna: 0.0
-  orbita_roll: 0.0
-  orbita_pitch: 0.0
-  orbita_yaw: 0.0
+  neck_roll: 0.0
+  neck_pitch: 0.0
+  neck_yaw: 0.0

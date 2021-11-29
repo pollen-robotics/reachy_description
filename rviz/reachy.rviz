@@ -62,7 +62,7 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        bottom_orbita_arm:
+        bottom_neck_arm:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -137,7 +137,7 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        middle_orbita_arm:
+        middle_neck_arm:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -199,7 +199,7 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        top_orbita_arm:
+        top_neck_arm:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -219,7 +219,7 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        bottom_orbita_arm:
+        bottom_neck_arm:
           Value: true
         head:
           Value: true
@@ -251,7 +251,7 @@ Visualization Manager:
           Value: true
         left_tip:
           Value: true
-        middle_orbita_arm:
+        middle_neck_arm:
           Value: true
         pedestal:
           Value: true
@@ -277,7 +277,7 @@ Visualization Manager:
           Value: true
         right_tip:
           Value: true
-        top_orbita_arm:
+        top_neck_arm:
           Value: true
         torso:
           Value: true
@@ -289,7 +289,7 @@ Visualization Manager:
       Tree:
         pedestal:
           torso:
-            bottom_orbita_arm:
+            bottom_neck_arm:
               {}
             head_x:
               head_y:
@@ -314,7 +314,7 @@ Visualization Manager:
                             {}
                           left_tip:
                             {}
-            middle_orbita_arm:
+            middle_neck_arm:
               {}
             r_shoulder:
               r_shoulder_x:
@@ -327,7 +327,7 @@ Visualization Manager:
                             {}
                           right_tip:
                             {}
-            top_orbita_arm:
+            top_neck_arm:
               {}
       Update Interval: 0
       Value: true
