@@ -5,11 +5,16 @@
 <xacro:arg name="left_arm" default="true"/>
 <xacro:arg name="right_arm" default="true"/>
 
+<xacro:arg name="depth_camera" default="true"/>
+
+
 <!-- pretty important for stability -->
 <xacro:property name="damping" value="0" />
 <xacro:property name="friction" value="0.1" />
 
 <xacro:macro name="xmass" params="value"><mass value="${value}" /></xacro:macro>
+<xacro:property name="camera_link" value="0.05" /> <!-- Size of square 'camera' box -->
+<xacro:property name="camera_convergence" value="0.0" /> <!-- convergence angle (rad) of the cameras. 0=parallel-->
 
 <xacro:macro name="inertial_cuboid" params="mass xyz rpy x_length y_length z_length">
   <inertial>
@@ -640,7 +645,30 @@
     <axis xyz="1 0 0"/>
    <limit lower="-1.2" upper="0.35" effort="10." velocity="0.0"/>
     <dynamics damping="${damping}" friction="${friction}" />
+    <!-- <sensor name="r_gripper_force" type="force_torque"> -->
+    <!--   <update_rate>30</update_rate> -->
+    <!-- </sensor> -->
 </joint>
+
+<gazebo reference="r_gripper">
+    <provideFeedback>true</provideFeedback>
+</gazebo>
+<gazebo>
+   <plugin name="gazebo_ros_ft" filename="libgazebo_ros_ft_sensor.so">
+
+        <ros>
+          <!-- Add namespace and remap the default topic -->
+          <namespace>/force_sensors</namespace>
+          <argument>wrench:=r_gripper_ft_sensor</argument>
+        </ros>
+
+        <!-- Replace camelCase elements with camel_case ones -->
+        <joint_name>r_gripper</joint_name>
+        <update_rate>200</update_rate>
+        <update_rate>1</update_rate>
+        <gaussian_noise>0.01</gaussian_noise>
+      </plugin>
+</gazebo>
 
 
 <joint name="r_tip" type="fixed">
@@ -724,7 +752,29 @@
     <axis xyz="1 0 0"/>
    <limit lower="-0.35" upper="1.2" effort="10." velocity="0.0"/>
     <dynamics damping="${damping}" friction="${friction}" />
+    <!-- <sensor name="l_gripper_force" type="force_torque"> -->
+    <!--   <update_rate>30</update_rate> -->
+    <!-- </sensor> -->
 </joint>
+
+
+<gazebo>
+   <plugin name="gazebo_ros_ft" filename="libgazebo_ros_ft_sensor.so">
+
+        <ros>
+          <!-- Add namespace and remap the default topic -->
+          <namespace>/force_sensors</namespace>
+          <argument>wrench:=l_gripper_ft_sensor</argument>
+        </ros>
+
+        <!-- Replace camelCase elements with camel_case ones -->
+        <joint_name>l_gripper</joint_name>
+        <update_rate>200</update_rate>
+        <update_rate>1</update_rate>
+        <gaussian_noise>0.01</gaussian_noise>
+      </plugin>
+</gazebo>
+
 
 <joint name="l_tip" type="fixed">
     <origin xyz="0 0.012 -0.085" rpy="0 0 0" />
@@ -878,20 +928,354 @@
 <!-- Cameras -->
 <xacro:if value="$(arg head)">
 <joint name="left_cam_fixed" type="fixed">
-    <origin xyz="0.0033 0.03625 0.061" rpy="0.0 0.0 0.0"/>
+    <origin xyz="0.02 0.03625 0.06105" rpy="0.0 0.0  ${-camera_convergence/2.0}"/>
     <parent link="head" />
     <child link="left_camera" />
 </joint>
 
-<link name="left_camera" />
+<link name="left_camera" >
+  <!-- <collision> -->
+  <!--     <origin xyz="0 0 0" rpy="0 0 0"/> -->
+  <!--     <geometry> -->
+  <!--   <box size="${camera_link} ${camera_link} ${camera_link}"/> -->
+  <!--     </geometry> -->
+  <!--   </collision> -->
+
+    <!-- <visual> -->
+    <!--   <origin xyz="0 0 0" rpy="0 0 0"/> -->
+    <!--   <geometry> -->
+    <!-- <box size="${camera_link} ${camera_link} ${camera_link}"/> -->
+    <!--   </geometry> -->
+    <!--   <material name="red"/> -->
+    <!-- </visual> -->
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+ </link>
+
+
+
+
+ <link name="left_camera_optical">
+  </link>
+
+
+<joint name="left_camera_optical_joint" type="fixed">
+    <!-- these values have to be these values otherwise the gazebo camera
+        image won't be aligned properly with the frame it is supposedly
+        originating from -->
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="left_camera"/>
+    <child link="left_camera_optical"/>
+  </joint>
+
+
 
 <joint name="right_cam_fixed" type="fixed">
-    <origin xyz="0.0033 -0.03625 0.061" rpy="0.0 0.0 0.0"/>
+    <origin xyz="0.02 -0.03625 0.06105" rpy="0.0 0.0 ${camera_convergence/2.0}"/>
     <parent link="head" />
     <child link="right_camera" />
 </joint>
 
-<link name="right_camera" />
+
+
+<link name="right_camera" >
+
+  <!-- <collision> -->
+  <!--     <origin xyz="0 0 0" rpy="0 0 0"/> -->
+  <!--     <geometry> -->
+  <!--   <box size="${camera_link} ${camera_link} ${camera_link}"/> -->
+  <!--     </geometry> -->
+  <!--   </collision> -->
+
+    <!-- <visual> -->
+    <!--   <origin xyz="0 0 0" rpy="0 0 0"/> -->
+    <!--   <geometry> -->
+    <!-- <box size="${camera_link} ${camera_link} ${camera_link}"/> -->
+    <!--   </geometry> -->
+    <!--   <material name="red"/> -->
+    <!-- </visual> -->
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+ </link>
+
+
+ <link name="right_camera_optical">
+  </link>
+
+
+<joint name="right_camera_optical_joint" type="fixed">
+    <!-- these values have to be these values otherwise the gazebo camera
+        image won't be aligned properly with the frame it is supposedly
+        originating from -->
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="right_camera"/>
+    <child link="right_camera_optical"/>
+  </joint>
+
+
+
+  <!-- cameras -->
+  <!-- <gazebo reference="left_camera"> -->
+  <!--   <sensor type="camera" name="left_camera"> -->
+  <!--     <update_rate>30.0</update_rate> -->
+  <!--     <camera name="left_camera"> -->
+  <!--       <horizontal_fov>1.3962634</horizontal_fov> -->
+  <!--       <image> -->
+  <!--         <width>800</width> -->
+  <!--         <height>800</height> -->
+  <!--         <format>R8G8B8</format> -->
+  <!--       </image> -->
+  <!--       <clip> -->
+  <!--         <near>0.02</near> -->
+  <!--         <far>300</far> -->
+  <!--       </clip> -->
+  <!--       <noise> -->
+  <!--         <type>gaussian</type> -->
+  <!--         <!-\- Noise is sampled independently per pixel on each frame. -->
+  <!--              That pixel's noise value is added to each of its color -->
+  <!--              channels, which at that point lie in the range [0,1]. -\-> -->
+  <!--         <mean>0.0</mean> -->
+  <!--         <stddev>0.007</stddev> -->
+  <!--       </noise> -->
+  <!--     </camera> -->
+  <!--     <plugin name="camera_controller" filename="libgazebo_ros_camera.so"> -->
+  <!--       <alwaysOn>true</alwaysOn> -->
+  <!--       <updateRate>0.0</updateRate> -->
+  <!--       <cameraName>reachy/left_camera</cameraName> -->
+  <!--       <imageTopicName>image_raw</imageTopicName> -->
+  <!--       <cameraInfoTopicName>camera_info</cameraInfoTopicName> -->
+  <!--       <frameName>left_camera_optical</frameName> -->
+  <!--       <hackBaseline>0.07</hackBaseline> -->
+  <!--       <distortionK1>0.0</distortionK1> -->
+  <!--       <distortionK2>0.0</distortionK2> -->
+  <!--       <distortionK3>0.0</distortionK3> -->
+  <!--       <distortionT1>0.0</distortionT1> -->
+  <!--       <distortionT2>0.0</distortionT2> -->
+  <!--     </plugin> -->
+  <!--   </sensor> -->
+  <!-- </gazebo> -->
+
+
+ <gazebo reference="left_camera">
+ <!-- <link name="left_camera"> -->
+    <sensor type="camera" name="left_camera">
+
+
+          <!-- Set always_on only sensor, not on plugin -->
+          <always_on>0</always_on>
+
+          <!-- Set update_rate only sensor, not on plugin -->
+          <update_rate>30</update_rate>
+
+          <camera name="left_camera">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+            <distortion>
+              <k1>0.0</k1>
+              <k2>0.0</k2>
+              <k3>0.0</k3>
+              <p1>0.0</p1>
+              <p2>0.0</p2>
+              <center>0.5 0.5</center>
+            </distortion>
+
+            <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.007</stddev>
+            </noise>
+
+          </camera>
+
+          <!-- Use camera, not camera_triggered -->
+          <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+
+            <!-- <ros> -->
+            <!--   <namespace>custom_ns</namespace> -->
+            <!--   <argument>image_raw:=custom_img</argument> -->
+            <!--   <argument>camera_info:=custom_info</argument> -->
+            <!-- </ros> -->
+
+            <!-- Set camera name. If empty, defaults to sensor name (i.e. "sensor_name") -->
+            <camera_name>left_camera</camera_name>
+
+            <!-- Set TF frame name. If empty, defaults to link name (i.e. "link_name") -->
+            <frame_name>left_camera_optical</frame_name>
+
+            <hack_baseline>0.07</hack_baseline>
+
+            <!-- No need to repeat distortion parameters or to set autoDistortion -->
+          </plugin>
+        </sensor>
+      </gazebo>
+
+
+
+
+
+
+
+ <gazebo reference="right_camera">
+    <sensor type="camera" name="right_camera">
+
+
+          <!-- Set always_on only sensor, not on plugin -->
+          <always_on>0</always_on>
+
+          <!-- Set update_rate only sensor, not on plugin -->
+          <update_rate>30</update_rate>
+
+          <camera name="right_camera">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+            <distortion>
+              <k1>0.0</k1>
+              <k2>0.0</k2>
+              <k3>0.0</k3>
+              <p1>0.0</p1>
+              <p2>0.0</p2>
+              <center>0.5 0.5</center>
+            </distortion>
+
+            <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.007</stddev>
+            </noise>
+
+          </camera>
+
+          <!-- Use camera, not camera_triggered -->
+          <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+
+            <!-- <ros> -->
+            <!--   <namespace>custom_ns</namespace> -->
+            <!--   <argument>image_raw:=custom_img</argument> -->
+            <!--   <argument>camera_info:=custom_info</argument> -->
+            <!-- </ros> -->
+
+            <!-- Set camera name. If empty, defaults to sensor name (i.e. "sensor_name") -->
+            <camera_name>right_camera</camera_name>
+
+            <!-- Set TF frame name. If empty, defaults to link name (i.e. "link_name") -->
+            <frame_name>right_camera_optical</frame_name>
+
+            <hack_baseline>0.07</hack_baseline>
+
+            <!-- No need to repeat distortion parameters or to set autoDistortion -->
+          </plugin>
+        </sensor>
+      </gazebo>
+
+
+
+<link name="depth_camera_link" >
+  <!-- <collision> -->
+  <!--     <origin xyz="0 0 0" rpy="0 0 0"/> -->
+  <!--     <geometry> -->
+  <!--   <box size="${camera_link} ${camera_link} ${camera_link}"/> -->
+  <!--     </geometry> -->
+  <!--   </collision> -->
+
+    <!-- <visual> -->
+    <!--   <origin xyz="0 0 0" rpy="0 0 0"/> -->
+    <!--   <geometry> -->
+    <!-- <box size="${camera_link} ${camera_link} ${camera_link}"/> -->
+    <!--   </geometry> -->
+    <!--   <material name="red"/> -->
+    <!-- </visual> -->
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+
+ </link>
+
+<joint name="depth_cam_fixed" type="fixed">
+    <origin xyz="0.02 0 0.06105" rpy="0.0 0.0 0"/>
+    <parent link="head" />
+    <child link="depth_camera_link" />
+</joint>
+
+ <link name="depth_camera_optical">
+  </link>
+
+
+<joint name="depth_camera_optical_joint" type="fixed">
+    <!-- these values have to be these values otherwise the gazebo camera
+        image won't be aligned properly with the frame it is supposedly
+        originating from -->
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="depth_camera_link"/>
+    <child link="depth_camera_optical"/>
+  </joint>
+
+
+
+<xacro:if value="$(arg depth_camera)">
+<gazebo reference="depth_camera_link">
+    <sensor name="depth_camera" type="depth">
+        <always_on>true</always_on>
+        <update_rate>15</update_rate>
+        <pose>0 0 0 0 0 0</pose>
+        <camera name="realsense_depth_camera">
+            <horizontal_fov>1.46608</horizontal_fov>
+            <image>
+                <width>424</width>
+                <height>240</height>
+                <format>B8G8R8</format>
+            </image>
+            <clip>
+                <near>0.05</near>
+                <far>8</far>
+            </clip>
+        </camera>
+        <!-- https://github.com/mlherd/ros2_turtlebot3_waffle_intel_realsense -->
+        <!-- <plugin name="intel_realsense_d430_depth_driver" filename="libgazebo_ros_camera.so"> -->
+        <plugin name="intel_realsense_r200_depth_driver" filename="libgazebo_ros_camera.so">
+            <ros>
+                <namespace>depth_camera</namespace>
+                <remapping>depth_camera/image_raw:=color/image_raw</remapping>
+                <remapping>depth_camera/depth/image_raw:=depth/image_rect_raw</remapping>
+                <remapping>depth_camera/camera_info:=camera_info</remapping>
+                <remapping>depth_camera/depth/camera_info:=depth/camera_info</remapping>
+                <remapping>depth_camera/points:=depth/points</remapping>
+            </ros>
+            <camera_name>depth_camera</camera_name>
+            <frame_name>depth_camera_optical</frame_name>
+            <hack_baseline>0.07</hack_baseline>
+            <min_depth>0.05</min_depth>
+            <max_depth>8.0</max_depth>
+        </plugin>
+    </sensor>
+</gazebo>
+
+
+
+
+
+</xacro:if>
+
+
+
 </xacro:if>
 
 
