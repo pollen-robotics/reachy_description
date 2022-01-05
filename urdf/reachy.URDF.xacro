@@ -218,7 +218,7 @@
     <inertial>
         <origin xyz="-0.0 0.0 -0.019" rpy="0.0 0.0 0.0"/>
         <mass value="0.158"/>
-        <inertia ixx="6.887e+4" ixy="5.393e+0" ixz="-9.155e+2" iyy="7.895e+4" iyz="4.512e-1" izz="4.235e+4"/>
+        <inertia ixx="6.887e-5" ixy="5.393e-9" ixz="-9.155e-7" iyy="7.895e-5" iyz="4.512e-10" izz="4.235e-5"/>
     </inertial>
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
@@ -391,7 +391,7 @@
     <inertial>
         <origin xyz="0.0 0.0 -0.019" rpy="0.0 0.0 0.0"/>
         <mass value="0.158"/>
-        <inertia ixx="6.887e+4" ixy="5.393e+0" ixz="-9.155e+2" iyy="7.895e+4" iyz="4.512e-1" izz="4.235e+4"/>
+        <inertia ixx="6.887e-5" ixy="5.393e-9" ixz="-9.155e-7" iyy="7.895e-5" iyz="4.512e-10" izz="4.235e-5"/>
     </inertial>
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
