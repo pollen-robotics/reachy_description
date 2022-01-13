@@ -136,7 +136,7 @@
         </geometry>
     </visual>
     <collision>
-        <origin xyz="-0.009 -0.002 0.059" rpy="1.57 0.0 0.0"/>
+        <origin xyz="-0.009 -0.002 0.059" rpy="${pi/2.0} 0.0 0.0"/>
         <geometry>
             <cylinder length="0.15" radius="0.06" />
         </geometry>
@@ -196,18 +196,18 @@
 <xacro:if value="$(arg right_arm)">
 <link name="r_shoulder">
     <inertial>
-        <origin xyz="-0.016 0.036 0.0" rpy="1.57 1.57 0.0"/>
+        <origin xyz="-0.016 0.036 0.0" rpy="${pi/2.0} ${pi/2.0} 0.0"/>
         <mass value="0.053"/>
         <inertia ixx="3.308e-4" ixy="9.972e-8" ixz="-2.037e-9" iyy="4.650e-5" iyz="2.113e-6" izz="3.545e-5"/>
     </inertial>
     <visual name="">
-        <origin xyz="0.0 0.04 0.0" rpy="1.57 1.57 0.0"/>
+        <origin xyz="0.0 0.04 0.0" rpy="${pi/2.0} ${pi/2.0} 0.0"/>
         <geometry>
             <mesh filename="file://$(find reachy_description)/meshes/shoulder.dae"/>
         </geometry>
     </visual>
     <collision>
-        <origin xyz="0.0 0.04 0.0" rpy="1.57 1.57 0.0"/>
+        <origin xyz="0.0 0.04 0.0" rpy="${pi/2.0} ${pi/2.0} 0.0"/>
         <geometry>
             <cylinder length="0.09" radius="0.035" />
         </geometry>
@@ -317,20 +317,20 @@
 <link name="r_gripper_thumb">
     <inertial>
         <!-- <origin xyz="0.032 -0.008 0.0" rpy="0.0 1.57 0.0"/> -->
-        <origin xyz="0.0 -0.008 0.0" rpy="0.0 1.57 0.0"/>
+        <origin xyz="0.0 -0.008 0.0" rpy="0.0 ${pi/2.0} 0.0"/>
         <mass value="0.173"/>
         <!-- <inertia ixx="1.083e-4" ixy="-3.476e-5" ixz="1.331e-6" iyy="1.421e-4" iyz="6.730e-7" izz="2.112e-4"/> -->
         <inertia ixx="0.0001" izz="0.0001" iyy="0.0001" ixy="0" ixz="0" iyz="0" />
 
     </inertial>
     <visual name="">
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 0.0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 ${pi/2.0} 0.0"/>
         <geometry>
             <mesh filename="file://$(find reachy_description)/meshes/r_gripper_thumb.dae"/>
         </geometry>
     </visual>
     <collision>
-        <origin xyz="0.0 0.02 -0.06" rpy="0.0 1.57 0.0"/>
+        <origin xyz="0.0 0.02 -0.06" rpy="0.0 ${pi/2.0} 0.0"/>
         <geometry>
             <box size="0.1 0.012 0.035" />
         </geometry>
@@ -340,7 +340,7 @@
 <link name="r_gripper_finger">
     <inertial>
         <!-- <origin xyz="-0.005 -0.043 -0.0" rpy="0.0 1.57 0.0"/> -->
-        <origin xyz="-0.00 -0.005 -0.0" rpy="1.57 0.0 1.57"/>
+        <origin xyz="-0.00 -0.005 -0.0" rpy="${pi/2.0} 0.0 ${pi/2.0}"/>
         <mass value="0.035"/>
 
         <!-- <inertia ixx="9.166e-5" ixy="-6.559e-6" ixz="-3.952e-8" iyy="1.062e-5" iyz="5.276e-9" izz="8.704e-5"/> -->
@@ -348,13 +348,13 @@
 
     </inertial>
     <visual name="">
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 0.0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 ${pi/2.0} 0.0"/>
         <geometry>
             <mesh filename="file://$(find reachy_description)/meshes/r_gripper_finger.dae"/>
         </geometry>
     </visual>
     <collision>
-        <origin xyz="0.0 -0.01 -0.02" rpy="0.0 1.57 0.0"/>
+        <origin xyz="0.0 -0.01 -0.02" rpy="0.0 ${pi/2.0} 0.0"/>
         <geometry>
             <box size="0.1 0.012 0.035" />
         </geometry>
@@ -369,18 +369,18 @@
 <xacro:if value="$(arg left_arm)">
 <link name="l_shoulder">
     <inertial>
-        <origin xyz="-0.016 -0.036 0.0" rpy="-1.57 1.57 0.0"/>
+        <origin xyz="-0.016 -0.036 0.0" rpy="${-pi/2.0} ${pi/2.0} 0.0"/>
         <mass value="0.053"/>
         <inertia ixx="3.308e-4" ixy="9.972e-8" ixz="-2.037e-9" iyy="4.650e-5" iyz="2.113e-6" izz="3.545e-5"/>
     </inertial>
     <visual name="">
-        <origin xyz="0.0 -0.04 0.0" rpy="-1.57 1.57 0.0"/>
+        <origin xyz="0.0 -0.04 0.0" rpy="${-pi/2.0} ${pi/2.0} 0.0"/>
         <geometry>
             <mesh filename="file://$(find reachy_description)/meshes/shoulder.dae"/>
         </geometry>
     </visual>
     <collision>
-        <origin xyz="0.0 -0.04 0.0" rpy="-1.57 1.57 0.0"/>
+        <origin xyz="0.0 -0.04 0.0" rpy="${-pi/2.0} ${pi/2.0} 0.0"/>
         <geometry>
             <cylinder length="0.09" radius="0.035" />
         </geometry>
@@ -490,20 +490,20 @@
 <link name="l_gripper_thumb">
     <inertial>
         <!-- <origin xyz="0.032 0.008 0.0" rpy="0.0 1.57 0.0"/> -->
-        <origin xyz="0.0 0.008 0.0" rpy="0.0 1.57 0.0"/>
+        <origin xyz="0.0 0.008 0.0" rpy="0.0 ${pi/2.0} 0.0"/>
         <mass value="0.173"/>
         <!-- <inertia ixx="1.088e+5" ixy="3.479e+4" ixz="1.357e+3" iyy="1.422e+5" iyz="-7.930e+2" izz="2.116e+5"/> -->
         <inertia ixx="0.0001" izz="0.0001" iyy="0.0001" ixy="0" ixz="0" iyz="0" />
 
     </inertial>
     <visual name="">
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 0.0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 ${pi/2.0} 0.0"/>
         <geometry>
             <mesh filename="file://$(find reachy_description)/meshes/l_gripper_thumb.dae"/>
         </geometry>
     </visual>
     <collision>
-        <origin xyz="0.0 -0.02 -0.06" rpy="0.0 1.57 0.0"/>
+        <origin xyz="0.0 -0.02 -0.06" rpy="0.0 ${pi/2.0} 0.0"/>
         <geometry>
             <box size="0.1 0.012 0.035" />
         </geometry>
@@ -513,19 +513,19 @@
 <link name="l_gripper_finger">
     <inertial>
         <!-- <origin xyz="0.005 -0.043 0.0" rpy="0.0 1.57 0.0"/> -->
-        <origin xyz="-0.00 0.005 -0.0" rpy="1.57 0.0 1.57"/>
+        <origin xyz="-0.00 0.005 -0.0" rpy="${pi/2.0} 0.0 ${pi/2.0}"/>
         <mass value="0.035"/>
         <!-- <inertia ixx="9.165e-5" ixy="6.559e-6" ixz="3.609e-10" iyy="1.062e-5" iyz="4.666e-9" izz="8.705e-5"/> -->
         <inertia ixx="0.00005" izz="0.00005" iyy="0.00005" ixy="0" ixz="0" iyz="0" />
     </inertial>
     <visual name="">
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 0.0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 ${pi/2.0} 0.0"/>
         <geometry>
             <mesh filename="file://$(find reachy_description)/meshes/l_gripper_finger.dae"/>
         </geometry>
     </visual>
     <collision>
-        <origin xyz="0.0 0.01 -0.02" rpy="0.0 1.57 0.0"/>
+        <origin xyz="0.0 0.01 -0.02" rpy="0.0 ${pi/2.0} 0.0"/>
         <geometry>
             <box size="0.1 0.012 0.035" />
         </geometry>
@@ -579,7 +579,7 @@
     <parent link="torso"/>
     <child link="r_shoulder"/>
     <axis xyz="0 1 0"/>
-   <limit lower="-2.618" upper="1.57" effort="10." velocity="0.0"/>
+   <limit lower="-2.618" upper="${pi/2.0}" effort="10." velocity="0.0"/>
     <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
@@ -588,7 +588,7 @@
     <parent link="r_shoulder"/>
     <child link="r_shoulder_x"/>
     <axis xyz="1 0 0"/>
-   <limit lower="-3.14" upper="0.174" effort="10." velocity="0.0"/>
+   <limit lower="${-pi}" upper="0.174" effort="10." velocity="0.0"/>
     <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
@@ -597,7 +597,7 @@
     <parent link="r_shoulder_x"/>
     <child link="r_upper_arm"/>
     <axis xyz="0 0 1"/>
-   <limit lower="-1.57" upper="1.57" effort="10." velocity="0.0"/>
+   <limit lower="${-pi/2.0}" upper="${pi/2.0}" effort="10." velocity="0.0"/>
     <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
@@ -658,7 +658,7 @@
 
         <ros>
           <!-- Add namespace and remap the default topic -->
-          <namespace>/force_sensors</namespace>
+          <namespace>/right_force_sensor</namespace>
           <argument>wrench:=r_gripper_ft_sensor</argument>
         </ros>
 
@@ -685,7 +685,7 @@
     <parent link="torso"/>
     <child link="l_shoulder"/>
     <axis xyz="0 1 0"/>
-   <limit lower="-2.618" upper="1.57" effort="10." velocity="0.0"/>
+   <limit lower="-2.618" upper="${pi/2.0}" effort="10." velocity="0.0"/>
     <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
@@ -694,7 +694,7 @@
     <parent link="l_shoulder"/>
     <child link="l_shoulder_x"/>
     <axis xyz="1 0 0"/>
-   <limit lower="-0.174" upper="3.14" effort="10." velocity="0.0"/>
+   <limit lower="-0.174" upper="${pi}" effort="10." velocity="0.0"/>
     <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
@@ -703,7 +703,7 @@
     <parent link="l_shoulder_x"/>
     <child link="l_upper_arm"/>
     <axis xyz="0 0 1"/>
-   <limit lower="-1.57" upper="1.57" effort="10." velocity="0.0"/>
+   <limit lower="${-pi/2.0}" upper="${pi/2.0}" effort="10." velocity="0.0"/>
     <dynamics damping="${damping}" friction="${friction}" />
 </joint>
 
@@ -763,7 +763,7 @@
 
         <ros>
           <!-- Add namespace and remap the default topic -->
-          <namespace>/force_sensors</namespace>
+          <namespace>/left_force_sensor</namespace>
           <argument>wrench:=l_gripper_ft_sensor</argument>
         </ros>
 
@@ -911,7 +911,7 @@
 
 <link name="bottom_neck_arm">
     <visual name="">
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 -1.57"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${-pi/2.0}"/>
         <geometry>
             <mesh filename="file://$(find reachy_description)/meshes/orbita_arm.dae"/>
         </geometry>
@@ -967,7 +967,7 @@
     <!-- these values have to be these values otherwise the gazebo camera
         image won't be aligned properly with the frame it is supposedly
         originating from -->
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="${-pi/2.0} 0 ${-pi/2.0}"/>
     <parent link="left_camera"/>
     <child link="left_camera_optical"/>
   </joint>
@@ -1015,7 +1015,7 @@
     <!-- these values have to be these values otherwise the gazebo camera
         image won't be aligned properly with the frame it is supposedly
         originating from -->
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="${-pi/2.0} 0 ${-pi/2.0}"/>
     <parent link="right_camera"/>
     <child link="right_camera_optical"/>
   </joint>
@@ -1100,7 +1100,7 @@
           </camera>
 
           <!-- Use camera, not camera_triggered -->
-          <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+          <plugin name="left_camera_controller" filename="libgazebo_ros_camera.so">
 
             <!-- <ros> -->
             <!--   <namespace>custom_ns</namespace> -->
@@ -1162,7 +1162,7 @@
           </camera>
 
           <!-- Use camera, not camera_triggered -->
-          <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+          <plugin name="right_camera_controller" filename="libgazebo_ros_camera.so">
 
             <!-- <ros> -->
             <!--   <namespace>custom_ns</namespace> -->
@@ -1223,7 +1223,7 @@
     <!-- these values have to be these values otherwise the gazebo camera
         image won't be aligned properly with the frame it is supposedly
         originating from -->
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="${-pi/2.0} 0 ${-pi/2.0}"/>
     <parent link="depth_camera_link"/>
     <child link="depth_camera_optical"/>
   </joint>
