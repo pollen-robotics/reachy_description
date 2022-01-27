@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <robot name="reachy">
-
+    <mujoco>
+        <compiler meshdir="../meshes/" balanceinertia="true"/>
+    </mujoco>
 <!-- Torso Link -->
 
 <link name="pedestal"/>
@@ -47,7 +49,7 @@
     </collision>
 </link>
 
-<link name="l_antenna">
+<link name="l_antenna_link">
     <inertial>
         <origin xyz="-0.001 0.0 0.008" rpy="0.0 0.0 0.0"/>
         <mass value="0.004"/>
@@ -67,7 +69,7 @@
     </collision>
 </link>
 
-<link name="r_antenna">
+<link name="r_antenna_link">
     <inertial>
         <origin xyz="-0.001 0.0 0.008" rpy="0.0 0.0 0.0"/>
         <mass value="0.004"/>
@@ -426,16 +428,16 @@
 
 <joint name="r_antenna" type="revolute">
     <origin xyz="-0.052 -0.057 0.086" rpy="-0.166 -1.054 1.11"/>
-    <parent link="head"/> 
-    <child link="r_antenna"/>
+    <parent link="head"/>
+    <child link="r_antenna_link"/>
     <axis xyz="0 0 1"/>
    <limit lower="-2.618" upper="2.618" effort="10." velocity="0.0"/>
 </joint>
 
 <joint name="l_antenna" type="revolute">
     <origin xyz="-0.052 0.057 0.086" rpy="0.166 -1.054 -1.11"/>
-    <parent link="head"/> 
-    <child link="l_antenna"/>
+    <parent link="head"/>
+    <child link="l_antenna_link"/>
     <axis xyz="0 0 1"/>
    <limit lower="-2.618" upper="2.618" effort="10." velocity="0.0"/>
 </joint>
@@ -445,7 +447,7 @@
 
 <joint name="r_shoulder_pitch" type="revolute">
     <origin xyz="0.0 -0.19 0.0" rpy="0.0 0.0 0.0"/>
-    <parent link="torso"/> 
+    <parent link="torso"/>
     <child link="r_shoulder"/>
     <axis xyz="0 1 0"/>
    <limit lower="-2.618" upper="1.57" effort="10." velocity="0.0"/>
@@ -536,7 +538,7 @@
     <parent link="l_shoulder_x"/>
     <child link="l_upper_arm"/>
     <axis xyz="0 0 1"/>
-   <limit lower="-1.57" upper="1.57" effort="10." velocity="0.0"/> 
+   <limit lower="-1.57" upper="1.57" effort="10." velocity="0.0"/>
 </joint>
 
 <joint name="l_elbow_pitch" type="revolute">
@@ -548,7 +550,7 @@
 </joint>
 
 <joint name="l_forearm_yaw" type="revolute">
-    <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/> 
+    <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
     <parent link="l_forearm"/>
     <child link="l_wrist"/>
     <axis xyz="0 0 1"/>
@@ -599,7 +601,7 @@
 -->
 
 <!-- ...with a ball orbita joint -->
-<joint name="orbita_roll" type="revolute">
+<joint name="neck_roll" type="revolute">
     <origin xyz="0.015 0.0 0.095" rpy="0 0.174 0" />
     <parent link="torso"/>
     <child link="head_x"/>
@@ -609,7 +611,7 @@
 
 <link name="head_x" />
 
-<joint name="orbita_pitch" type="revolute">
+<joint name="neck_pitch" type="revolute">
     <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
     <parent link="head_x"/>
     <child link="head_y"/>
@@ -619,7 +621,7 @@
 
 <link name="head_y" />
 
-<joint name="orbita_yaw" type="revolute">
+<joint name="neck_yaw" type="revolute">
     <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
     <parent link="head_y"/>
     <child link="head_z"/>
@@ -629,7 +631,7 @@
 
 <link name="head_z" />
 
-<joint name="orbita_fixed" type="fixed">
+<joint name="neck_fixed" type="fixed">
     <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
     <parent link="head_z" />
     <child link="head" />
@@ -637,13 +639,13 @@
 
 <!-- Fixed Orbita Arms Visuals -->
 
-<joint name="orbita_top" type="fixed">
+<joint name="neck_top" type="fixed">
     <origin xyz="0.0067 0.0 0.0478" rpy="0 0.174 0"/>
     <parent link="torso"/>
-    <child link="top_orbita_arm"/>
+    <child link="top_neck_arm"/>
 </joint>
 
-<link name="top_orbita_arm">
+<link name="top_neck_arm">
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.5236"/>
         <geometry>
@@ -658,13 +660,13 @@
     </collision>
 </link>
 
-<joint name="orbita_middle" type="fixed">
+<joint name="neck_middle" type="fixed">
     <origin xyz="0.0067 0.0 0.0478" rpy="0 0.174 0"/>
     <parent link="torso"/>
-    <child link="middle_orbita_arm"/>
+    <child link="middle_neck_arm"/>
 </joint>
 
-<link name="middle_orbita_arm">
+<link name="middle_neck_arm">
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 2.618"/>
         <geometry>
@@ -679,13 +681,13 @@
     </collision>
 </link>
 
-<joint name="orbita_bottom" type="fixed">
+<joint name="neck_bottom" type="fixed">
     <origin xyz="0.0067 0.0 0.0478" rpy="0 0.174 0"/>
     <parent link="torso"/>
-    <child link="bottom_orbita_arm"/>
+    <child link="bottom_neck_arm"/>
 </joint>
 
-<link name="bottom_orbita_arm">
+<link name="bottom_neck_arm">
     <visual name="">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 -1.57"/>
         <geometry>
